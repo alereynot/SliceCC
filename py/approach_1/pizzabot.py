@@ -5,7 +5,6 @@ from typing import List, Tuple
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common import constants
 from common.sliceargparser import parse_arguments
-
 from common.utils import check_dimensions
 
 
