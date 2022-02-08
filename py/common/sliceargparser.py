@@ -9,7 +9,7 @@ class ParseResult:
     def __init__(
         self,
         valid: bool = False,
-        dimension: List[int] = [],
+        dimension: List[Tuple[int, int]] = [],
         coordinates: List[Tuple[int, int]] = [],
         message: str = "",
     ):

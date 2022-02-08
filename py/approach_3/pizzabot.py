@@ -27,9 +27,11 @@ def moves(x: int, y: int, dest: Tuple) -> str:
     return ret_val
 
 
-def find_directions(dimension: List[int], coordinates: List[Tuple[int, int]]) -> str:
+def find_directions(
+    dimension: List[Tuple[int, int]], coordinates: List[Tuple[int, int]]
+) -> str:
 
-    if check_dimensions(dimension, coordinates):
+    if not check_dimensions(dimension, coordinates):
         return constants.ERR_COORD_NOT_IN_GRID
 
     ret_val = ""
