@@ -47,7 +47,6 @@ def main():
 
     directions = find_directions(arguments.dimension, arguments.coordinates)
     print(directions)
-    return
 
 
 if __name__ == "__main__":

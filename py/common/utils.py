@@ -2,7 +2,7 @@ from typing import List, Tuple
 
 
 def check_dimensions(
-    dimension: Tuple[int, int], coordinates: List[Tuple[int, int]]
+    dimension: Tuple, coordinates: List[Tuple[int, int]]
 ) -> bool:
 
     # Check with Allan if coordinates should be >= 0

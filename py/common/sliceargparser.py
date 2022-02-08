@@ -8,12 +8,10 @@ class ParseResult:
     def __init__(
         self,
         valid: bool = False,
-        dimension: List = None,
+        dimension: Tuple = None,
         coordinates: List[Tuple[int, int]] = None,
         message: str = "",
     ):
-        if dimension is None:
-            dimension = []
         self.valid = valid
         self.dimension = dimension
         self.coordinates = coordinates
@@ -52,7 +50,7 @@ def parse_arguments(argv: List) -> ParseResult:
             return ret_val
 
     try:
-        dimension_val = [int(x) for x in dimension.split("x")]
+        dimension_val = tuple(int(x) for x in dimension.split("x"))
     except ValueError:
         ret_val.message = constants.ERR_INCOMPLETE_COORD
         return ret_val

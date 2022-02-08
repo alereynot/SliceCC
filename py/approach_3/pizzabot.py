@@ -29,7 +29,7 @@ def moves(x: int, y: int, dest: Tuple) -> str:
 
 
 def find_directions(
-    dimension: List[Tuple[int, int]], coordinates: List[Tuple[int, int]]
+    dimension: Tuple, coordinates: List[Tuple[int, int]]
 ) -> str:
 
     if not check_dimensions(dimension, coordinates):
@@ -57,7 +57,6 @@ def main():
 
     directions = find_directions(arguments.dimension, arguments.coordinates)
     print(directions)
-    return
 
 
 if __name__ == "__main__":
