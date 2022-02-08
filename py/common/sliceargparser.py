@@ -1,7 +1,7 @@
 import sys
 from typing import List, Tuple
 
-from . import constants
+from py.common import constants
 
 
 class ParseResult:

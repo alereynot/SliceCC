@@ -1,11 +1,8 @@
-import os
-import sys
 from typing import List, Tuple
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from common import constants
-from common.sliceargparser import parse_arguments
-from common.utils import check_dimensions
+from py.common import constants
+from py.common.sliceargparser import parse_arguments
+from py.common.utils import check_dimensions
 
 
 def moves(axis: str, pos: int, dest: int) -> str:
@@ -29,9 +26,8 @@ def find_directions(dimension: List[int], coordinates: List[Tuple[int, int]]) ->
     x, y = 0, 0
     for coord in coordinates:
         dest_x, dest_y = coord[0], coord[1]
-
-        ret_val += moves("x", x, dest_x)
-        ret_val += moves("y", y, dest_y)
+        for axis in ["x", "y"]:
+            ret_val += moves(axis, eval(axis), eval(f"dest_{axis}"))
         x, y = dest_x, dest_y
 
         ret_val += constants.DROP

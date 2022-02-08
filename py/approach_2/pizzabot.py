@@ -1,12 +1,8 @@
-import os
-import sys
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from typing import List, Tuple
 
-from common import constants
-from common.sliceargparser import parse_arguments
-from common.utils import check_dimensions
+from py.common import constants
+from py.common.sliceargparser import parse_arguments
+from py.common.utils import check_dimensions
 
 
 def moves(position: Tuple, destination: Tuple) -> str:
@@ -16,15 +12,11 @@ def moves(position: Tuple, destination: Tuple) -> str:
     distance_x = destination[0] - x
     distance_y = destination[1] - y
 
-    if distance_x > 0:
-        ret_val += constants.MOVE_EAST * distance_x
-    else:
-        ret_val += constants.MOVE_WEST * abs(distance_x)
+    sign = "+" if distance_x > 0 else "-"
+    ret_val += constants.DIRECTIONS["x" + sign] * distance_x
 
-    if distance_y > 0:
-        ret_val += constants.MOVE_NORTH * distance_y
-    else:
-        ret_val += constants.MOVE_SOUTH * abs(distance_y)
+    sign = "+" if distance_y > 0 else "-"
+    ret_val += constants.DIRECTIONS["y" + sign] * distance_y
 
     ret_val += constants.DROP
     return ret_val
