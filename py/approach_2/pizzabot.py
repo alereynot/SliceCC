@@ -30,7 +30,7 @@ def find_directions(dimension: List[int], coordinates: List[Tuple[int, int]]) ->
     ret_val = ""
     x, y = 0, 0
     for coord in coordinates:
-        dest_x, dest_y = coord[0], coord[1]
+        dest_x, dest_y = coord
         ret_val += moves((x, y), (dest_x, dest_y))
         x = dest_x
         y = dest_y

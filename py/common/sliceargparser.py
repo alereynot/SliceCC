@@ -1,3 +1,4 @@
+import re
 import sys
 from typing import List, Tuple
 
@@ -27,9 +28,9 @@ def parse_arguments() -> ParseResult:
     dimension = sys.argv[1].strip().split(" ")[0]
 
     coord_str = sys.argv[1].replace(dimension, "").strip()
-    coord_str = coord_str.replace("(", "")
-    coord_str = coord_str.replace(")", " ")
-    coord_lst = coord_str.split("  ")
+    coord_lst = re.findall(r"\(.*?\)", coord_str)
+    re_parenth = re.compile(r"[()]")
+    coord_lst = [re_parenth.sub("", x) for x in coord_lst]
 
     if not coord_lst[0]:
         ret_val.message = constants.ERR_NO_COORDINATES
