@@ -1,24 +1,26 @@
 import re
 from typing import List, Tuple
 
-from py.common import constants
+from . import constants
 
 
 class ParseResult:
     def __init__(
         self,
         valid: bool = False,
-        dimension: Tuple[int, int] = [],
-        coordinates: List[Tuple[int, int]] = [],
+        dimension: List = None,
+        coordinates: List[Tuple[int, int]] = None,
         message: str = "",
     ):
+        if dimension is None:
+            dimension = []
         self.valid = valid
         self.dimension = dimension
         self.coordinates = coordinates
         self.message = message
 
 
-def assemble_coords(coords: str, ret_val: ParseResult) -> bool:
+def assemble_coords(coords: str) -> List:
     coord_lst = re.findall(r"\(.*?\)", coords)
     re_parenth = re.compile(r"[()]")
 
@@ -34,7 +36,7 @@ def parse_arguments(argv: List) -> ParseResult:
     dimension = argv[1].strip().split(" ")[0]
     coord_str = argv[1].replace(dimension, "").strip()
 
-    coord_lst = assemble_coords(coord_str, ret_val)
+    coord_lst = assemble_coords(coord_str)
 
     if not coord_lst[0]:
         ret_val.message = constants.ERR_NO_COORDINATES
