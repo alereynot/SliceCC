@@ -1,3 +1,4 @@
+import sys
 from typing import List, Tuple
 
 from py.common import constants
@@ -48,7 +49,7 @@ def find_directions(
 
 
 def main():
-    arguments = parse_arguments()
+    arguments = parse_arguments(sys.argv)
 
     if not arguments.valid:
         print(arguments.message)

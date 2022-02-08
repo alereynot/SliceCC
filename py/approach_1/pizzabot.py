@@ -1,3 +1,4 @@
+import sys
 from typing import List, Tuple
 
 from py.common import constants
@@ -18,7 +19,7 @@ def moves(axis: str, pos: int, dest: int) -> str:
 
 
 def find_directions(
-    dimension: List[Tuple[int, int]], coordinates: List[Tuple[int, int]]
+    dimension: Tuple[int, int], coordinates: List[Tuple[int, int]]
 ) -> str:
 
     if not check_dimensions(dimension, coordinates):
@@ -38,7 +39,7 @@ def find_directions(
 
 
 def main():
-    arguments = parse_arguments()
+    arguments = parse_arguments(sys.argv)
 
     if not arguments.valid:
         print(arguments.message)

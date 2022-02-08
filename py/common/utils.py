@@ -1,8 +1,13 @@
 from typing import List, Tuple
 
 
-def check_dimensions(dimension: List[Tuple[int, int]], coordinates) -> bool:
+def check_dimensions(
+    dimension: Tuple[int, int], coordinates: List[Tuple[int, int]]
+) -> bool:
 
-    clear = all([(x <= dimension[0]) & (y <= dimension[1]) for x, y in coordinates])
+    # Check with Allan if coordinates should be >= 0
+    clear = all(
+        [(dimension[0] >= x >= 0) & (dimension[1] >= y >= 0) for x, y in coordinates]
+    )
 
     return clear
