@@ -7,10 +7,9 @@ from py.common.utils import check_dimensions
 
 
 def moves(x: int, y: int, dest: Tuple) -> str:
-    keep_going = not ((x == dest[0]) & (y == dest[1]))
     ret_val = ""
 
-    while keep_going:
+    while not ((x == dest[0]) & (y == dest[1])):
         if x > dest[0]:
             ret_val += constants.MOVE_WEST
             x -= 1
@@ -23,14 +22,11 @@ def moves(x: int, y: int, dest: Tuple) -> str:
         elif y < dest[1]:
             ret_val += constants.MOVE_NORTH
             y += 1
-        keep_going = not ((x == dest[0]) & (y == dest[1]))
 
     return ret_val
 
 
-def find_directions(
-    dimension: Tuple, coordinates: List[Tuple[int, int]]
-) -> str:
+def find_directions(dimension: Tuple, coordinates: List[Tuple[int, int]]) -> str:
 
     if not check_dimensions(dimension, coordinates):
         return constants.ERR_COORD_NOT_IN_GRID
