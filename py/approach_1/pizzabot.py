@@ -6,7 +6,7 @@ from py.common.sliceargparser import parse_arguments
 from py.common.utils import check_dimensions
 
 
-def moves(axis: str, pos: int, dest: int) -> str:
+def moves(axis, pos, dest):
     ret_val = ""
     while pos != dest:
         if pos > dest:
@@ -38,7 +38,7 @@ def find_directions(
     return ret_val
 
 
-def main():
+def main() -> None:
     arguments = parse_arguments(sys.argv)
 
     if not arguments.valid:
