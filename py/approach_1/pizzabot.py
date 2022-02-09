@@ -1,5 +1,5 @@
 import sys
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 from py.common import constants
 from py.common.sliceargparser import parse_arguments
@@ -18,15 +18,16 @@ def moves(axis: str, pos: int, dest: int) -> str:
     return ret_val
 
 
-def find_directions(
-    dimension: Tuple[int, int], coordinates: List[Tuple[int, int]]
-) -> str:
+def find_directions(dimension: Optional[Tuple], coordinates: Optional[List[Tuple[int, int]]]) -> str:
 
     if not check_dimensions(dimension, coordinates):
         return constants.ERR_COORD_NOT_IN_GRID
 
     ret_val = ""
     x, y = 0, 0
+    if not coordinates:
+        return ret_val
+
     for coord in coordinates:
         dest_x, dest_y = coord
         for axis in ["x", "y"]:
@@ -38,7 +39,7 @@ def find_directions(
     return ret_val
 
 
-def main():
+def main() -> None:
     arguments = parse_arguments(sys.argv)
 
     if not arguments.valid:

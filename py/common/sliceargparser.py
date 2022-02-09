@@ -1,5 +1,5 @@
 import re
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 from . import constants
 
@@ -8,8 +8,8 @@ class ParseResult:
     def __init__(
         self,
         valid: bool = False,
-        dimension: Tuple = None,
-        coordinates: List[Tuple[int, int]] = None,
+        dimension: Optional[Tuple] = None,
+        coordinates: Optional[List[Tuple[int, int]]] = None,
         message: str = "",
     ):
         self.valid = valid
@@ -50,7 +50,8 @@ def parse_arguments(argv: List) -> ParseResult:
             return ret_val
 
     try:
-        dimension_val = tuple(int(x) for x in dimension.split("x"))
+        if dim_coord := dimension.split("x"):
+            dimension_val = tuple(int(x) for x in dim_coord)
     except ValueError:
         ret_val.message = constants.ERR_INCOMPLETE_COORD
         return ret_val
@@ -58,4 +59,5 @@ def parse_arguments(argv: List) -> ParseResult:
     ret_val.valid = True
     ret_val.dimension = dimension_val
     ret_val.coordinates = coordinates
+
     return ret_val
